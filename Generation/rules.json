@@ -1,0 +1,53 @@
+{"emotions": {
+    "sadness":
+    ["It looks like you are depressed, ",
+      "Depression is ",
+      "It's OK to feel depressed, ",
+      "It's not your fault ",
+      "I'm sorry that you are sad, "
+    ],
+
+    "fear":
+    ["Fear is ",
+      "Are you in a panic now? ",
+      "People usually feel scared "
+    ],
+
+    "anger":
+    ["Calm down ",
+      "People feel angry ",
+      "It looks like you are angry, "
+    ],
+
+    "joy":
+    ["I also feel happy for you ",
+      "What a joy! ",
+      "Congratulations! ",
+      "Joyful story! "
+    ],
+
+    "disgust":
+    ["Disgust is a protection strategy, ",
+      "How come! ",
+      "How disgusting "
+    ],
+
+    "surprise":
+    ["What a surprise, ",
+      "Truly unexpected "
+    ]
+  },
+
+  "place":
+    ["home", "school", "university", "park", "pool", "bank", "hospital", "company",
+      "library", "bookstore", "post office", "pharmacy", "police station", "airport", "train station",
+      "church", "factory", "garage", "market", "supermarket", "bakery", "cafe", "restaurant", "cinema",
+      "theater", "amusement park", "museum", "zoo"],
+
+
+  "time":
+    ["today", "yesterday", "tomorrow", "week", "month",
+      "morning", "afternoon", "evening", "night",
+      "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+
+}
