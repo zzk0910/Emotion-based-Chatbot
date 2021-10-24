@@ -36,6 +36,7 @@ text = "I fight with my classmates at university today. He kicked my sister, and
 
 # -------------------------- TextRank识别关键字 -----------------------------------------
 # load a spaCy model, depending on language, scale, etc.
+# Before run this line, please use "spacy download en_core_web_sm" to download
 nlp = spacy.load("en_core_web_sm")
 
 # add PyTextRank to the spaCy pipeline
@@ -78,7 +79,7 @@ answers = gpt2.generate(sess=sess,
                         seed=random.randint(1, 1000),
                         prefix=prefix,
                         nsamples=5,
-                        top_k=3,
+                        top_k=10,
                         top_p=0.9,
                         include_prefix=True,
                         truncate='.\n',
