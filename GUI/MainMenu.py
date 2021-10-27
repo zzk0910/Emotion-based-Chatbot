@@ -1,71 +1,61 @@
 import tkinter as tk
 from tkinter import ttk
+from ChatbotPage import ChatbotPage
+from QuestionnairePage import QuestionnairePage
+from MonitorPage import MonitorPage
 
 
 class MainMenu(tk.Tk):
+
     def __init__(self):
         super().__init__()
+        self._init_ttk_style()
+        self._create_window()
 
-        self.create_window()
+        # if add page, please change this dict
+        self._pages_name_obj = {'ChatbotPage': ChatbotPage,
+                                'QuestionnairePage': QuestionnairePage,
+                                'MonitorPage': MonitorPage}
+        self.pages = self._register_pages()
 
-        info_frame = self.create_info_frame()
-        info_frame.grid(column=0, row=0)
+        # show first page
+        self.show_page('ChatbotPage')
 
-        button_frame = self.create_button_frame()
-        button_frame.grid(column=0, row=1)
+    def _init_ttk_style(self):
+        self.ttk_style = ttk.Style()
+        self.ttk_style.configure("Button_ON.TButton", background="blue", borderwidth=100)
+        self.ttk_style.configure("Button_OFF.TButton", background="white")
 
-    def create_window(self):
+    def _create_window(self):
         sw = tk.Tk.winfo_screenwidth(self)
         sh = tk.Tk.winfo_screenheight(self)
         width = 500
         height = 400
-        center_str= '%dx%d+%d+%d' % (width, height, (sw - width) / 2, (sh - height) / 4)
+        center_str = '%dx%d+%d+%d' % (width, height, (sw - width) / 2, (sh - height) / 4)
         # Set title
         self.title('Login')
         # Set the size of the window
         self.geometry(center_str)  # width x height ± x ± y
 
-    def create_info_frame(self):
-        info_frame = ttk.Frame(self, height=350, width=500)
-        info_frame['relief'] = "groove"
-        info_frame['padding'] = 20
-        info_frame.columnconfigure(index=0, weight=1)
-        info_frame.columnconfigure(index=1, weight=2)
-        # Test label
-        label1 = ttk.Label(info_frame, text="Username: ")
-        label1.grid(row=0, column=0, sticky=tk.W, padx=2, pady=2)
+    def _create_container(self):
+        container = tk.Frame(self)
+        container.pack(side="top", fill="both", expand=True)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+        return container
 
-        label2 = ttk.Label(info_frame, text="zzkzzzzz")
-        label2.grid(row=0, column=1, sticky=tk.E, padx=2, pady=2)
+    def _register_pages(self):
+        pages = {}
+        container = self._create_container()
+        for page_name, page_obj in self._pages_name_obj.items():
+            page = page_obj(container, self)
+            pages[page_name] = page
+            page.grid(row=0, column=0, sticky="nsew")
+        return pages
 
-        label3 = ttk.Label(info_frame, text="Gender: ")
-        label3.grid(row=1, column=0, sticky=tk.W, padx=2, pady=2)
-
-        label3 = ttk.Label(info_frame, text="Male")
-        label3.grid(row=1, column=1, sticky=tk.E, padx=2, pady=2)
-
-        return info_frame
-
-    def create_button_frame(self):
-        button_frame = ttk.Frame(self, height=150, width=500)
-        button_frame['padding'] = 5
-        button_frame.columnconfigure(0, weight=1)
-        button_frame.columnconfigure(1, weight=1)
-        button_frame.columnconfigure(2, weight=1)
-
-        # navigator button to Questionnaire
-        login_button = ttk.Button(button_frame, text="Questionnaire")
-        login_button.grid(column=0, row=0, sticky=tk.W, padx=2, pady=2)
-
-        # navigator button to Chatroom
-        login_button = ttk.Button(button_frame, text="Little Genesis")
-        login_button.grid(column=1, row=0, sticky=tk.W, padx=2, pady=2)
-
-        # navigator button to Monitor
-        login_button = ttk.Button(button_frame, text="Long-term Monitoring")
-        login_button.grid(column=2, row=0, sticky=tk.W, padx=2, pady=2)
-
-        return button_frame
+    def show_page(self, frame_name):
+        page = self.pages[frame_name]
+        page.tkraise()
 
 
 if __name__ == "__main__":
