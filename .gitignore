@@ -1,4 +1,5 @@
 .DS_Store
+ER-Word2Vec-DL/.idea/*
 Generation/.idea/*
 Generation/checkpoint/*
 .idea/*
