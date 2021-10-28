@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import pymysql
 from ChatbotPage import ChatbotPage
 from QuestionnairePage import QuestionnairePage
 from MonitorPage import MonitorPage
@@ -9,6 +10,12 @@ class MainMenu(tk.Tk):
 
     def __init__(self):
         super().__init__()
+        # connect database
+        self.database = pymysql.connect(host='localhost',
+                                        user='root',
+                                        password='1',
+                                        database='littlegenius')
+
         self._init_ttk_style()
         self._create_window()
 
@@ -18,8 +25,47 @@ class MainMenu(tk.Tk):
                                 'MonitorPage': MonitorPage}
         self.pages = self._register_pages()
 
+        self.sql_test()
         # show first page
         self.show_page('ChatbotPage')
+
+    def sql_test(self):
+        cursor = self.database.cursor()
+        sql = "SELECT * FROM emotion_info"
+        try:
+            # 执行SQL语句
+            cursor.execute(sql)
+            # 获取所有记录列表
+            results = cursor.fetchall()
+        except:
+            results = 'Error'
+            print("Error: unable to fetch data")
+        print(results)
+
+        sql = "SELECT * FROM emotion_info WHERE emotion_value>0.6"
+        try:
+            # 执行SQL语句
+            cursor.execute(sql)
+            # 获取所有记录列表
+            results = cursor.fetchall()
+        except:
+            results = 'Error'
+            print("Error: unable to fetch data")
+        print(results)
+
+        # SQL 插入语句
+        sql = "INSERT INTO emotion_info" \
+              "(emotion_id, emotion_value)" \
+              "VALUES (%d, %f)" % \
+              (4, 0.78)
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 执行sql语句
+            self.database.commit()
+        except:
+            # 发生错误时回滚
+            self.database.db.rollback()
 
     def _init_ttk_style(self):
         self.ttk_style = ttk.Style()

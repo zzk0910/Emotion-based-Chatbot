@@ -38,6 +38,17 @@ class QuestionnairePage(tk.Frame):
         return info_frame
 
     def create_page_frame(self):
+        cursor = self.root.database.cursor()
+        sql = "SELECT * FROM emotion_info"
+        try:
+            # 执行SQL语句
+            cursor.execute(sql)
+            # 获取所有记录列表
+            results = cursor.fetchall()
+        except:
+            results = 'Error'
+            print("Error: unable to fetch data")
+
         page_frame = ttk.Frame(self, height=350, width=500)
         label1 = ttk.Label(page_frame, text="这里是questionnaire")
         label1.grid(row=0, column=0, sticky=tk.W, padx=2, pady=2)
