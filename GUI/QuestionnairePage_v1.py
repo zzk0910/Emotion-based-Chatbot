@@ -14,6 +14,9 @@ class QuestionnairePage(tk.Frame):
         page_frame = self.create_page_frame()
         page_frame.grid(column=0, row=1)
 
+        # q_button_frame = self.create_q_button_frame()
+        # q_button_frame.grid(column= 0, row = 2)
+
         button_frame = self.create_button_frame()
         button_frame.grid(column=0, row=2)
 
@@ -29,7 +32,7 @@ class QuestionnairePage(tk.Frame):
         root = self.root
         page_frame = ttk.Frame(self, height=500, width=700)
 
-        canvas = tk.Canvas(page_frame,width=680, height=580, scrollregion=(0, 0, 1000, 6800))
+        canvas = tk.Canvas(page_frame,width=680, height=580, scrollregion=(0, 0, 1000, 4800))
         # scrollbar
         scrollbar = tk.Scrollbar(page_frame, orient=tk.VERTICAL)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
@@ -51,6 +54,7 @@ class QuestionnairePage(tk.Frame):
         scrollbar_h.config(command=canvas.xview)
         self.info_frame()
         self.scales_frame()
+        self.create_q_button_frame()
 
         return page_frame
 
@@ -602,11 +606,15 @@ class QuestionnairePage(tk.Frame):
             tk.Radiobutton(frame1, text=ans, variable=v_i7, value=score).grid(row=i, column=0, sticky=tk.W)
             i += 1
         self.isi.set(self.isi.get() + v_i7.get())
+        self.col = i
 
-    def create_button(self):
-        canvas = self.canvas
-        submit = tk.Button(canvas, text='Submit', command=self.allsubmit, anchor='nw')
-        submit.pack(side=tk.BOTTOM, fill=tk.BOTH)
+    def create_q_button_frame(self):
+
+        frame1 = self.frame1
+        i = self.col +1
+        submit = tk.Button(frame1, text='Submit', command=self.allsubmit, anchor='nw')
+        submit.grid(column=0, row=i, sticky=tk.W, padx=2, pady=2)
+        return submit
 
     def allsubmit(self):
 
