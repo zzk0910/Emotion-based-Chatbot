@@ -14,25 +14,38 @@ class QuestionnairePage(tk.Frame):
         page_frame = self.create_page_frame()
         page_frame.grid(column=0, row=1)
 
-        # q_button_frame = self.create_q_button_frame()
-        # q_button_frame.grid(column= 0, row = 2)
-
         button_frame = self.create_button_frame()
         button_frame.grid(column=0, row=2)
 
     def create_info_frame(self):
-        info_frame = ttk.Frame(self, height=200, width=700)
+        info_frame = ttk.Frame(self, height=350, width=500)
 
-        title_label = tk.Label(info_frame, text="Personal Questionnaire", justify='left', anchor='w',font=("微软雅黑", 14))
-        title_label.grid(row=0, column=0, sticky=tk.W)
+        info_frame['relief'] = "groove"
+        info_frame['padding'] = 20
+        info_frame.columnconfigure(index=0, weight=1)
+        info_frame.columnconfigure(index=1, weight=2)
+        # Test label
+        label1 = ttk.Label(info_frame, text="Username: ")
+        label1.grid(row=0, column=0, sticky=tk.W, padx=2, pady=2)
+
+        label2 = ttk.Label(info_frame, text="zzkzzzzz")
+        label2.grid(row=0, column=1, sticky=tk.E, padx=2, pady=2)
+
+        label3 = ttk.Label(info_frame, text="Gender: ")
+        label3.grid(row=1, column=0, sticky=tk.W, padx=2, pady=2)
+
+        label3 = ttk.Label(info_frame, text="Male")
+        label3.grid(row=1, column=1, sticky=tk.E, padx=2, pady=2)
 
         return info_frame
 
     def create_page_frame(self):
         root = self.root
         page_frame = ttk.Frame(self, height=500, width=700)
+        # label1 = ttk.Label(page_frame, text="这里是questionnaire")
+        # label1.grid(row=0, column=0, sticky=tk.W, padx=2, pady=2)
 
-        canvas = tk.Canvas(page_frame,width=680, height=580, scrollregion=(0, 0, 1000, 4800))
+        canvas = tk.Canvas(page_frame, scrollregion=(0, 0, 1000, 4800))
         # scrollbar
         scrollbar = tk.Scrollbar(page_frame, orient=tk.VERTICAL)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
@@ -43,23 +56,18 @@ class QuestionnairePage(tk.Frame):
         # canvas.config(width=300, height=300)
         canvas.config(xscrollcommand=scrollbar_h.set, yscrollcommand=scrollbar.set)
         canvas.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)
-
-        self.canvas = canvas
+        tk.Label(canvas, text="Personal Questionnaire", justify='left', anchor='w').pack()
         frame1 = tk.Frame(canvas, width=700, height=500)
-
         self.frame1 = frame1
-        canvas.create_window(20, 20, window=frame1, anchor='nw')
+        canvas.create_window(0, 0, window=frame1, anchor='nw')
 
         scrollbar.config(command=canvas.yview)
         scrollbar_h.config(command=canvas.xview)
         self.info_frame()
-        self.scales_frame()
-        self.create_q_button_frame()
-
         return page_frame
 
     def create_button_frame(self):
-        button_frame = ttk.Frame(self, height=150, width=700)
+        button_frame = ttk.Frame(self, height=150, width=500)
         button_frame['padding'] = 5
         button_frame.columnconfigure(0, weight=1)
         button_frame.columnconfigure(1, weight=1)
@@ -87,8 +95,6 @@ class QuestionnairePage(tk.Frame):
         monitor_button.grid(column=2, row=0, sticky=tk.W, padx=2, pady=2)
 
         return button_frame
-
-
     def info_frame(self):
         frame1 = self.frame1
         label_part1 = tk.Label(frame1, text='Personal Information', font=("Helvetica", 16, "bold"))
@@ -234,7 +240,7 @@ class QuestionnairePage(tk.Frame):
         # PHQ-9
         label6 = tk.Label(frame1,
                        text='\nPHQ-9: Over the last 2 weeks, how often have you been bothered by the following problems?')
-        label6.grid(row=i, column=0, sticky=tk.W)
+        label6.grid(row=i, column=0, sticky=W)
         self.phq = tk.IntVar()
         i += 1
         # q1
@@ -606,15 +612,11 @@ class QuestionnairePage(tk.Frame):
             tk.Radiobutton(frame1, text=ans, variable=v_i7, value=score).grid(row=i, column=0, sticky=tk.W)
             i += 1
         self.isi.set(self.isi.get() + v_i7.get())
-        self.col = i
 
-    def create_q_button_frame(self):
-
-        frame1 = self.frame1
-        i = self.col +1
-        submit = tk.Button(frame1, text='Submit', command=self.allsubmit, anchor='nw')
-        submit.grid(column=0, row=i, sticky=tk.W, padx=2, pady=2)
-        return submit
+    def create_button(self):
+        canvas = self.canvas
+        submit = tk.Button(canvas, text='Submit', command=self.allsubmit)
+        submit.pack(side=tk.BOTTOM)
 
     def allsubmit(self):
 
