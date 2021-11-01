@@ -27,7 +27,7 @@ class MainMenu(tk.Tk):
 
         self.sql_test()
         # show first page
-        self.show_page('ChatbotPage')
+        self.show_page('QuestionnairePage')
 
     def sql_test(self):
         cursor = self.database.cursor()
@@ -75,8 +75,8 @@ class MainMenu(tk.Tk):
     def _create_window(self):
         sw = tk.Tk.winfo_screenwidth(self)
         sh = tk.Tk.winfo_screenheight(self)
-        width = 500
-        height = 400
+        width = 700
+        height = 700
         center_str = '%dx%d+%d+%d' % (width, height, (sw - width) / 2, (sh - height) / 4)
         # Set title
         self.title('Login')
