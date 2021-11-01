@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from ChatbotPage import ChatbotPage
-from QuestionnairePage_v1 import QuestionnairePage
+from QuestionnairePage import QuestionnairePage
 from MonitorPage import MonitorPage
 
 
