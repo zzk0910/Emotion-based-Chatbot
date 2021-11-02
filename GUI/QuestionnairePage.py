@@ -655,7 +655,7 @@ class QuestionnairePage(tk.Frame):
               "(name, sex, age, Occupation, `GAD-7_Score`, `PHQ-9_Score`, PSS,ISI)" \
               "VALUES ('%s', '%s', %d, '%s', %d, %d, %d, %d)" % \
               (self.name.get(), self.sex.get(), self.age.get(), self.occupation.get(), self.gad.get(), self.phq.get(), self.pss.get(), self.isi.get())
-        print(sql)
+
         with self.root.database.cursor() as cursor:
             try:
                 cursor.execute(sql)

@@ -11,9 +11,9 @@ class MainMenu(tk.Tk):
     def __init__(self):
         super().__init__()
         # connect database
-        self.database = pymysql.connect(host='localhost',
+        self.database = pymysql.connect(host='120.78.11.2',
                                         user='root',
-                                        password='1',
+                                        password='password',
                                         database='littlegenius')
 
         self._init_ttk_style()
