@@ -650,4 +650,19 @@ class QuestionnairePage(tk.Frame):
             f.write(str(self.pss.get()))
             f.write('\nISI:')
             f.write(str(self.isi.get()))
+        # database
+        sql = "INSERT INTO questionnaire" \
+              "(name, sex, age, Occupation, `GAD-7_Score`, `PHQ-9_Score`, PSS,ISI)" \
+              "VALUES ('%s', '%s', %d, '%s', %d, %d, %d, %d)" % \
+              (self.name.get(), self.sex.get(), self.age.get(), self.occupation.get(), self.gad.get(), self.phq.get(), self.pss.get(), self.isi.get())
+        print(sql)
+        with self.root.database.cursor() as cursor:
+            try:
+                cursor.execute(sql)
+                self.root.database.commit()
+            except:
+                self.root.database.rollback()
+                print("database insert error:questionnaire")
+
+        # messagebox
         messagebox.showinfo('Success', 'Sumbit! ')

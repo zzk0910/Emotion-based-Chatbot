@@ -132,14 +132,14 @@ class ChatbotPage(tk.Frame):
 
         # navigator button to Chatroom
         chatbot_button = ttk.Button(button_frame,
-                                    style='Button_OFF.TButton',
+                                    style='Button_ON.TButton',
                                     text="Little Genesis",
                                     command=lambda: self.root.show_page('ChatbotPage'))
         chatbot_button.grid(column=1, row=0, sticky=tk.W, padx=2, pady=2)
 
         # navigator button to Monitor
         monitor_button = ttk.Button(button_frame,
-                                    style='Button_ON.TButton',
+                                    style='Button_OFF.TButton',
                                     text="Long-term Monitoring",
                                     command=lambda: self.root.show_page('MonitorPage'))
         monitor_button.grid(column=2, row=0, sticky=tk.W, padx=2, pady=2)
