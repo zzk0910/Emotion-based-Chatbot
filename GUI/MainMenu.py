@@ -25,7 +25,7 @@ class MainMenu(tk.Tk):
                                 'MonitorPage': MonitorPage}
         self.pages = self._register_pages()
 
-        self.sql_test()
+        # self.sql_test()
         # show first page
         self.show_page('QuestionnairePage')
 
