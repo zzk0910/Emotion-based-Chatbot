@@ -1,7 +1,10 @@
 .DS_Store
 GUI/__pycache__/*
-ER-Word2Vec-DL/.idea/*
+ERWord2VecDL/.idea/*
 Generation/.idea/*
 Generation/checkpoint/*
 .idea/
 Generation/__pycache__/*
+ERWord2VecD
+GUI/test_gpt2.py
+ER-Word2Vec-DL/serving/__pycache__/

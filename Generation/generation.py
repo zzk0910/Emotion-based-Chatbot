@@ -52,6 +52,7 @@ def gen(sess, prefix, include_prefix):
                                 top_k=10,
                                 top_p=0.9,
                                 include_prefix=True,
+                                truncate='.\n',
                                 return_as_list=True,
                                 batch_size=5)
     else:
