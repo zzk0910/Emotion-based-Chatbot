@@ -1,4 +1,15 @@
-{"emotions": {
+{
+  "daily":{
+    "hello": ["Hi! Good to see you!"],
+    "hi": ["Hi! How are you today?"],
+    "good": ["great!"],
+    "good morning": ["good morning"],
+    "good afternoon": ["good afternoon"],
+    "good night": ["Good night!"],
+    "see you": ["See you next time!"]
+
+  },
+  "emotions": {
     "sadness":
     ["It looks like you are depressed, ",
       "Depression is ",
@@ -36,18 +47,5 @@
     ["What a surprise, ",
       "Truly unexpected "
     ]
-  },
-
-  "place":
-    ["home", "school", "university", "park", "pool", "bank", "hospital", "company",
-      "library", "bookstore", "post office", "pharmacy", "police station", "airport", "train station",
-      "church", "factory", "garage", "market", "supermarket", "bakery", "cafe", "restaurant", "cinema",
-      "theater", "amusement park", "museum", "zoo"],
-
-
-  "time":
-    ["today", "yesterday", "tomorrow", "week", "month",
-      "morning", "afternoon", "evening", "night",
-      "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
-
+  }
 }
