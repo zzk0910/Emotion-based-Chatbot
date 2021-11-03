@@ -8,6 +8,7 @@ import PIL
 from PIL import Image
 from PIL import ImageTk
 import json
+import tensorflow as tf
 
 
 class ChatbotPage(tk.Frame):
@@ -39,7 +40,7 @@ class ChatbotPage(tk.Frame):
 
         }
 
-        self.sess2 = load_generation_model()    # Start gpt-2 model
+        # self.sess2 = load_generation_model()    # Start gpt-2 model
 
         chat_frame = self.create_chat_frame()
         chat_frame.grid(row=0, column=0)
@@ -101,18 +102,22 @@ class ChatbotPage(tk.Frame):
             6: ["surprise", 0.6]  # surprise
         }
 
-        def response_strategy(sess2, f_reponse, e_response, input_sentence, emotion_threshold):
+        def response_strategy(f_reponse, e_response, input_sentence, emotion_threshold):
             if input_sentence in f_reponse:
                 answer = random.choice(f_reponse[input_sentence])
             else:
-                # label, value = run_api(input_sentence)
-                label, value = 3, 0.3
+                label, value = run_api(input_sentence)
+                # label, value = 3, 0.3
+
+                tf.compat.v1.reset_default_graph()
+                sess2 = load_generation_model()
                 if value >= emotion_threshold[label][1]:
                     e_type = emotion_threshold[label][0]
                     prefix = random.choice(e_response[e_type])
                     answer = gen(sess2, prefix, include_prefix=True)
                 else:
                     answer = gen(sess2, input_sentence, include_prefix=False)
+                sess2.close()
 
             return answer
 
@@ -147,7 +152,7 @@ class ChatbotPage(tk.Frame):
             textShow.config(state='normal')
             textShow.insert(tk.END, "Little Genesis：\n", "littlegenesis")
             textShow.insert(tk.END,
-                            response_strategy(self.sess2, fix_response, emotion_response, q, emotion_threshold),
+                            response_strategy(fix_response, emotion_response, q, emotion_threshold) + ".",
                             "input_sentence")
             textShow.insert(tk.END, "\n\n", "littlegenesis")
             textShow.see(tk.END)
@@ -190,7 +195,6 @@ class ChatbotPage(tk.Frame):
                                     text="Little Genesis",
                                     command=lambda: self.root.show_page('ChatbotPage'))
         chatbot_button.grid(column=1, row=0, sticky='ew', padx=2, pady=2)
-
         # navigator button to Monitor
         monitor_button = ttk.Button(button_frame,
                                     style='Button_OFF.TButton',
