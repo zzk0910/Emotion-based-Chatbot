@@ -29,6 +29,7 @@ class QuestionnairePage(tk.Frame):
         title_label.grid(row=0, column=0, sticky=tk.W)
 
         return info_frame
+
     def create_variables(self):
         self.gad = tk.IntVar()
         self.phq = tk.IntVar()
