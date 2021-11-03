@@ -3,4 +3,5 @@ GUI/__pycache__/*
 ER-Word2Vec-DL/.idea/*
 Generation/.idea/*
 Generation/checkpoint/*
-.idea/*
+.idea/
+Generation/__pycache__/*
