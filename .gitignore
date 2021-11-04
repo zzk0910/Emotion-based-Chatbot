@@ -5,6 +5,7 @@ Generation/.idea/*
 Generation/checkpoint/*
 .idea/
 Generation/__pycache__/*
-ERWord2VecD
+ERWord2VecDL/*
 GUI/test_gpt2.py
-ER-Word2Vec-DL/serving/__pycache__/
+ER-Word2Vec-DL
+ERWord2VecDL/serving/__pycache__/
