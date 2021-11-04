@@ -94,11 +94,11 @@ class ChatbotPage(tk.Frame):
             fix_response = responses["daily"]
             emotion_response = responses["emotions"]
         emotion_threshold = {
-            1: ["sadness", 0.6],  # sad
-            2: ["fear", 0.6],  # fear
-            3: ["anger", 0.6],  # anger
+            1: ["anger", 0.6],  # anger
+            2: ["disgust", 0.6],  # disgust
+            3: ["fear", 0.6],  # fear
             4: ["joy", 0.6],  # joy
-            5: ["disgust", 0.6],  # disgust
+            5: ["sadness", 0.6],  # sad
             6: ["surprise", 0.6]  # surprise
         }
 
