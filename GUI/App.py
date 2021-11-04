@@ -45,10 +45,11 @@ class App(tk.Tk):
 
         def buttoncallback():
             showinfo("Message", message="'%s' Logged in successfully! " % username_entry.get())
-            print(username_entry.get())
+            user_name = username_entry.get()
+            print(user_name)
             self.destroy()
             # Create MainMenu
-            m = MainMenu()
+            m = MainMenu(user_name)
             m.mainloop()
 
         # login button

@@ -1,3 +1,4 @@
+import datetime
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
 from tkinter import ttk
@@ -54,7 +55,6 @@ class ChatbotPage(tk.Frame):
         button_frame = self.create_button_frame()
         button_frame.grid(row=1, column=0, columnspan=2)
 
-
     def create_chat_frame(self):
         chat_frame = ttk.Frame(self)
 
@@ -82,11 +82,10 @@ class ChatbotPage(tk.Frame):
         textShow.tag_config("littlegenesis", foreground="green", font=self.config["message"]["font"])
         textShow.tag_config("input_sentence", foreground="green", font=self.config["message"]["font"])
 
-
         # Welcome notes
         textShow.config(state='normal')
         textShow.insert(tk.END, "Hi ! I'm little Genesis, nice to meet you! \n" +
-                               "Just share me anything you want to say. I'm excited to liten to your story! \n\n")
+                        "Just share me anything you want to say. I'm excited to liten to your story! \n\n")
         textShow.see(tk.END)
         textShow.config(state='disabled')
 
@@ -112,6 +111,20 @@ class ChatbotPage(tk.Frame):
                 result_ER = json.loads(result_ER.text)
                 label, value = result_ER['index'], result_ER['val']
                 # label, value = 3, 0.3
+                # update database
+                current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                sql = "INSERT INTO emotion_info" \
+                      "(emotion_type, emotion_value,time,user_text,user_name)" \
+                      "VALUES (%d, %f, '%s', '%s','%s')" % \
+                      (label, value, current_time, input_sentence,self.root.username)
+                with self.root.database.cursor() as cursor:
+                    try:
+                        cursor.execute(sql)
+                        self.root.database.commit()
+                    except:
+                        self.root.database.rollback()
+                        print("database insert error: Chatbot")
+                # end update database
 
                 tf.compat.v1.reset_default_graph()
                 sess2 = load_generation_model()
@@ -161,7 +174,6 @@ class ChatbotPage(tk.Frame):
             textShow.see(tk.END)
             textShow.config(state='disabled')
 
-
         # def button_action():
         # q = textInput.get()
         # textInput.delete(0, tk.END)
@@ -206,8 +218,6 @@ class ChatbotPage(tk.Frame):
         monitor_button.grid(column=2, row=0, sticky='ew', padx=2, pady=2)
 
         return button_frame
-
-
 
 #
 # if __name__ == "__main__":
