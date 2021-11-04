@@ -9,12 +9,14 @@ from PIL import Image
 from PIL import ImageTk
 import json
 import tensorflow as tf
+import requests
 
 
 class ChatbotPage(tk.Frame):
     def __init__(self, parent, root):
         super().__init__(parent)
         self.root = root
+        self.emotion_recognition_url = 'http://127.0.0.1:8000/emotion_recognition'
         self.config = {
             "window": "900x600",
             "message": {
@@ -105,7 +107,10 @@ class ChatbotPage(tk.Frame):
             if input_sentence in f_reponse:
                 answer = random.choice(f_reponse[input_sentence])
             else:
-                label, value = run_api(input_sentence)
+                data = {'text': input_sentence}  # 请求的参数，或者说是要传输的数据
+                result_ER = requests.post(self.emotion_recognition_url, json=data)
+                result_ER = json.loads(result_ER.text)
+                label, value = result_ER['index'], result_ER['val']
                 # label, value = 3, 0.3
 
                 tf.compat.v1.reset_default_graph()

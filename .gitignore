@@ -9,3 +9,5 @@ ERWord2VecDL/*
 GUI/test_gpt2.py
 ER-Word2Vec-DL
 ERWord2VecDL/serving/__pycache__/
+Generation/GenerationModel
+Generation/models
