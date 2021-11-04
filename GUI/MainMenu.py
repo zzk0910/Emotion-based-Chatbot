@@ -8,9 +8,10 @@ from MonitorPage import MonitorPage
 
 class MainMenu(tk.Tk):
 
-    def __init__(self):
+    def __init__(self, username=''):
         super().__init__()
         # connect database
+        self.username = username
         self.database = pymysql.connect(host='120.78.11.2',
                                         user='root',
                                         password='password',

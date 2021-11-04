@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import tkinter.messagebox as messagebox
-
+import datetime
 
 class QuestionnairePage(tk.Frame):
     def __init__(self, parent, root):
@@ -652,10 +652,11 @@ class QuestionnairePage(tk.Frame):
             f.write('\nISI:')
             f.write(str(self.isi.get()))
         # database
+        current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         sql = "INSERT INTO questionnaire" \
-              "(name, sex, age, Occupation, `GAD-7_Score`, `PHQ-9_Score`, PSS,ISI)" \
-              "VALUES ('%s', '%s', %d, '%s', %d, %d, %d, %d)" % \
-              (self.name.get(), self.sex.get(), self.age.get(), self.occupation.get(), self.gad.get(), self.phq.get(), self.pss.get(), self.isi.get())
+              "(name, sex, age, Occupation, `GAD-7_Score`, `PHQ-9_Score`, PSS,ISI,time,user_name)" \
+              "VALUES ('%s', '%s', %d, '%s', %d, %d, %d, %d, '%s','%s')" % \
+              (self.name.get(), self.sex.get(), self.age.get(), self.occupation.get(), self.gad.get(), self.phq.get(), self.pss.get(), self.isi.get(), current_time, self.root.username)
 
         with self.root.database.cursor() as cursor:
             try:
