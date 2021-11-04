@@ -62,47 +62,26 @@ class MonitorPage(tk.Frame):
 
         return button_frame
 
-    def create_matplotlib(self):
-        data = pd.read_csv("emotion2.csv")
-        Date = data.DATE
+    
+     def create_matplotlib(self):
+         data = pd.read_csv("emotion2.csv")
+         Date = data.DATE
 
-        index = np.arange(len(data))
+         JOY = np.array(data.JOY)
+         ANGER = np.array(data.ANGER)
+         SADNESS = np.array(data.SADNESS)
+         FRIGHT = np.array(data.FRIGHT)
+         FEAR = np.array(data.FEAR)
+         LOVE = np.array(data.LOVE)
+         self.figure = plt.figure(num=2, figsize=(7, 7), dpi=80, facecolor="white", edgecolor='green', frameon=True)
+         # self.figure.text(0.45, 0.94, 'wulalabulala')
 
-        JOY = np.array(data.JOY)
-        ANGER = np.array(data.ANGER)
-        SADNESS = np.array(data.SADNESS)
-        FRIGHT = np.array(data.FRIGHT)
-        FEAR = np.array(data.FEAR)
-        LOVE = np.array(data.LOVE)
+         plt.bar(range(len(JOY)), JOY, label='Joy', facecolor='darkorange', width=0.8)
+         plt.bar(range(len(JOY)), ANGER, bottom=JOY, label='Anger', facecolor='gray', width=0.8)
+         plt.bar(range(len(JOY)), SADNESS, bottom=JOY+ANGER, label='Sadness', facecolor='blue', width=0.8)
+         plt.bar(range(len(JOY)), FRIGHT, bottom=JOY+ANGER+SADNESS, label='Fright', facecolor='yellowgreen', width=0.8)
+         plt.bar(range(len(JOY)), FEAR, bottom=JOY+ANGER+SADNESS+FRIGHT, label='Fear', facecolor='orchid', width=0.8)
+         plt.bar(range(len(JOY)), LOVE, bottom=JOY+ANGER+SADNESS+FRIGHT+FEAR, label='Love',facecolor='pink', width=0.8)
 
-        self.figure, axs = plt.subplots(1, 2, figsize=(7, 4))
-        axs[0].bar(index, JOY, width=0.4, label='JOY')
-        axs[0].bar(index, ANGER, width=0.4, bottom=JOY, label='ANGER')
-        axs[0].bar(index, SADNESS, width=0.4, bottom=ANGER + JOY, label='SADNESS')
-        axs[0].bar(index, FRIGHT, width=0.4, bottom=ANGER + JOY + SADNESS, label='FRIGHT')
-        axs[0].bar(index, FEAR, width=0.4, bottom=ANGER + JOY + SADNESS + FRIGHT, label='FEAR')
-        axs[0].bar(index, LOVE, width=0.4, bottom=ANGER + JOY + SADNESS + FRIGHT + FEAR, label='LOVE')
+         plt.legend(loc=2) 
 
-        axs[0].set_ylim(0, 50)
-        axs[0].set_xticklabels(Date, rotation=90)
-        axs[0].legend(loc='upper left', shadow=True)
-
-        summ = JOY + ANGER + SADNESS + FRIGHT + FEAR + LOVE
-        percentage1 = JOY / summ
-        percentage2 = ANGER / summ
-        percentage3 = SADNESS / summ
-        percentage4 = FRIGHT / summ
-        percentage5 = FEAR / summ
-        percentage6 = LOVE / summ
-
-        axs[1].bar(index, percentage1, width=0.4, label=JOY)
-        axs[1].bar(index, percentage2, width=0.4, bottom=percentage1, label=ANGER)
-        axs[1].bar(index, percentage3, width=0.4, bottom=percentage1 + percentage2, label=SADNESS)
-        axs[1].bar(index, percentage4, width=0.4, bottom=percentage1 + percentage2 + percentage3, label=FRIGHT)
-        axs[1].bar(index, percentage5, width=0.4, bottom=percentage1 + percentage2 + percentage3 + percentage4,
-                   label=FEAR)
-        axs[1].bar(index, percentage6, width=0.4,
-                   bottom=percentage1 + percentage2 + percentage3 + percentage4 + percentage5, label=LOVE)
-
-        axs[1].set_ylim(0, 1)
-        axs[1].set_xticklabels(Date, rotation=90)
