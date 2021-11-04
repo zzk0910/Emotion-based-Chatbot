@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
 from tkinter import ttk
-from ERWord2VecDL.serving.predict import run_api
+from EmotionRecognition.serving.predict import run_api
 from Generation.generation import load_generation_model, gen
 import random
 import PIL

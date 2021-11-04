@@ -9,7 +9,7 @@ import re
 
 
 def text2array_rnn(text):
-    wv = np.load('../ERWord2VecDL/data/output/model_word2vec_200.npy', allow_pickle=True).item()
+    wv = np.load('../EmotionRecognition/data/output/model_word2vec_200.npy', allow_pickle=True).item()
 
     text = re.sub(r"([\w/'+$\s-]+|[^\w/'+$\s-]+)\s*", r"\1 ", text)
     words = text.strip().split(' ')
@@ -47,7 +47,7 @@ def predict(input_vec, model_dir):
 
 
 def run_api(input_text):
-    model_dir = '../ERWord2VecDL/network/output/rnn_model/1'
+    model_dir = '../EmotionRecognition/network/output/rnn_model/1'
     input_vec = text2array_rnn(input_text)
     index, val = predict(input_vec, model_dir)
     return index, val
