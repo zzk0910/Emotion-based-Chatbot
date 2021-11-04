@@ -63,7 +63,7 @@ class MonitorPage(tk.Frame):
         return button_frame
 
     
-     def create_matplotlib(self):
+    def create_matplotlib(self):
          data = pd.read_csv("emotion2.csv")
          Date = data.DATE
 
