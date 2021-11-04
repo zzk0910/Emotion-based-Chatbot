@@ -39,31 +39,40 @@ class ChatbotPage(tk.Frame):
             "emotion_classification_dir": ""
 
         }
+        self.rowconfigure(0, weight=6)
+        self.rowconfigure(1, weight=1)
+        self.columnconfigure(0, weight=3)
+        self.columnconfigure(1, weight=1)
 
         # self.sess2 = load_generation_model()    # Start gpt-2 model
 
         chat_frame = self.create_chat_frame()
-        chat_frame.grid(row=0, column=0)
+        chat_frame.grid(row=0, column=0, sticky="nsew")
 
         button_frame = self.create_button_frame()
-        button_frame.grid(row=1, column=0)
+        button_frame.grid(row=1, column=0, columnspan=2)
 
 
     def create_chat_frame(self):
-        chat_frame = ttk.Frame(self, width=500, height=200)
-        # chat_frame['padding'] = 5
-        chat_frame.rowconfigure(0, weight=1)
+        chat_frame = ttk.Frame(self)
+
+        chat_frame.rowconfigure(0, weight=2)
         chat_frame.rowconfigure(1, weight=1)
-        chat_frame.columnconfigure(0, weight=4)
-        chat_frame.columnconfigure(1, weight=1)
+        chat_frame.columnconfigure(0, weight=2)
         chat_frame.columnconfigure(1, weight=1)
 
-        # Create text chat interface
-        textShow = tk.Text(chat_frame, height=35, width=70,
-                           bd=self.config["message"]["bd"],
-                           font=self.config["message"]["font"])
-        textShow.grid(row=0, column=0, columnspan=2, sticky="nesw")
+        # chat_frame['padding'] = 5
 
+        textShow = scrolledtext.ScrolledText(chat_frame,
+                                             bd=self.config["message"]["bd"],
+                                             font=self.config["message"]["font"])
+        textShow.grid(row=0, column=0, columnspan=2, sticky="nsew")
+
+        textInput = tk.Entry(
+            chat_frame,
+            bd=self.config["question"]["bd"],
+            font=self.config["question"]["font"])
+        textInput.grid(row=1, column=0, sticky="ew")
         textShow.tag_add("user", tk.END)
         textShow.tag_add("littlegenesis", tk.END)
         textShow.tag_add("input_sentence", tk.END)
@@ -71,19 +80,9 @@ class ChatbotPage(tk.Frame):
         textShow.tag_config("littlegenesis", foreground="green", font=self.config["message"]["font"])
         textShow.tag_config("input_sentence", foreground="green", font=self.config["message"]["font"])
 
-        # create a scrollbar widget and set its command to the text widget
-        scrollbar = ttk.Scrollbar(chat_frame, orient='vertical', command=textShow.yview)
-        scrollbar.grid(row=0, column=2, sticky='nsw')
-        #  communicate back to the scrollbar
-        textShow['yscrollcommand'] = scrollbar.set
-
-        textInput = tk.Entry(
-            chat_frame,
-            bd=self.config["question"]["bd"],
-            font=self.config["question"]["font"])
-        textInput.grid(row=1, column=0, sticky="ew")
 
         # Welcome notes
+        textShow.config(state='normal')
         textShow.insert(tk.END, "Hi ! I'm little Genesis, nice to meet you! \n" +
                                "Just share me anything you want to say. I'm excited to liten to your story! \n\n")
         textShow.see(tk.END)
@@ -132,7 +131,6 @@ class ChatbotPage(tk.Frame):
             """
             
             
-            
             """
 
             textShow.config(state='normal')
@@ -176,7 +174,7 @@ class ChatbotPage(tk.Frame):
         return chat_frame
 
     def create_button_frame(self):
-        button_frame = ttk.Frame(self, width=500, height=150)
+        button_frame = ttk.Frame(self)
         button_frame['padding'] = 5
         button_frame.columnconfigure(0, weight=1)
         button_frame.columnconfigure(1, weight=1)
