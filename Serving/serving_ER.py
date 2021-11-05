@@ -51,6 +51,11 @@ def predict(input_vec):
 app = Flask(__name__)
 
 
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+
 @app.route("/emotion_recognition", methods=['POST'])
 def emotion_recognition():
     tmp = request.get_data(as_text=True)  # 得到post的json 转成str
@@ -63,4 +68,4 @@ def emotion_recognition():
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=8000)
+    app.run(host='0.0.0.0', port=8000)
