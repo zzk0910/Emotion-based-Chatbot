@@ -47,7 +47,7 @@ class ChatbotPage(tk.Frame):
         self.columnconfigure(0, weight=3)
         self.columnconfigure(1, weight=1)
 
-        # self.sess2 = load_generation_model()    # Start gpt-2 model
+        self.sess2 = load_generation_model(model_name="run3")    # Start gpt-2 model
 
         chat_frame = self.create_chat_frame()
         chat_frame.grid(row=0, column=0, sticky="nsew")
@@ -84,7 +84,7 @@ class ChatbotPage(tk.Frame):
 
         # Welcome notes
         textShow.config(state='normal')
-        textShow.insert(tk.END, "Hi ! I'm little Genesis, nice to meet you! \n" +
+        textShow.insert(tk.END, "Hi ! I'm little genius, nice to meet you! \n" +
                         "Just share me anything you want to say. I'm excited to liten to your story! \n\n")
         textShow.see(tk.END)
         textShow.config(state='disabled')
@@ -93,6 +93,7 @@ class ChatbotPage(tk.Frame):
             responses = json.load(f)
             fix_response = responses["daily"]
             emotion_response = responses["emotions"]
+            topics = responses["topics"]
         emotion_threshold = {
             1: ["anger", 0.6],  # anger
             2: ["disgust", 0.6],  # disgust
@@ -105,6 +106,7 @@ class ChatbotPage(tk.Frame):
         def response_strategy(f_reponse, e_response, input_sentence, emotion_threshold):
             if input_sentence in f_reponse:
                 answer = random.choice(f_reponse[input_sentence])
+                return answer
             else:
                 data = {'text': input_sentence}  # 请求的参数，或者说是要传输的数据
                 result_ER = requests.post(self.emotion_recognition_url, json=data)
@@ -126,17 +128,25 @@ class ChatbotPage(tk.Frame):
                         print("database insert error: Chatbot")
                 # end update database
 
-                tf.compat.v1.reset_default_graph()
-                sess2 = load_generation_model()
+                for k in topics.keys():
+                    if k in input_sentence:
+                        prefix = random.choice(topics[k])
+                        answer = gen(self.sess2, prefix, include_prefix=True) + "."
+                        return answer
+
+                # tf.compat.v1.reset_default_graph()
+                # sess2 = load_generation_model()
                 if value >= emotion_threshold[label][1]:
                     e_type = emotion_threshold[label][0]
                     prefix = random.choice(e_response[e_type])
-                    answer = gen(sess2, prefix, include_prefix=True)
+                    answer = gen(self.sess2, prefix, include_prefix=True) + "."
+                    return answer
                 else:
-                    answer = gen(sess2, input_sentence, include_prefix=False)
-                sess2.close()
+                    answer = gen(self.sess2, input_sentence, include_prefix=False) + "."
+                    return answer
+                # sess2.close()
 
-            return answer
+
 
         def send_message():
             q = textInput.get()
@@ -168,7 +178,7 @@ class ChatbotPage(tk.Frame):
             textShow.config(state='normal')
             textShow.insert(tk.END, "Little Genesis：\n", "littlegenesis")
             textShow.insert(tk.END,
-                            response_strategy(fix_response, emotion_response, q, emotion_threshold) + ".",
+                            response_strategy(fix_response, emotion_response, q, emotion_threshold),
                             "input_sentence")
             textShow.insert(tk.END, "\n\n", "littlegenesis")
             textShow.see(tk.END)
@@ -207,7 +217,7 @@ class ChatbotPage(tk.Frame):
         # navigator button to Chatroom
         chatbot_button = ttk.Button(button_frame,
                                     style='Button_ON.TButton',
-                                    text="Little Genesis",
+                                    text="Little Genius",
                                     command=lambda: self.root.show_page('ChatbotPage'))
         chatbot_button.grid(column=1, row=0, sticky='ew', padx=2, pady=2)
         # navigator button to Monitor
