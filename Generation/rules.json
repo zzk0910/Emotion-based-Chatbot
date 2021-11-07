@@ -1,51 +1,68 @@
 {
   "daily":{
-    "hello": ["Hi! Good to see you!"],
-    "hi": ["Hi! How are you today?"],
+    "hello": ["Hi! Good to see you!","Hi, How are you?"],
+    "hi": ["Hi! How are you today?", "Hello!"],
     "good": ["great!"],
     "good morning": ["good morning"],
     "good afternoon": ["good afternoon"],
     "good night": ["Good night!"],
-    "see you": ["See you next time!"]
-
+    "see you": ["See you next time!", "Nice talking with you!"],
+    "are you a girl": ["I can be a girl if you want.", "It depends on your opinion."],
+    "are you a boy": ["Not really.", "No, but I can be a boy."]
   },
+
+  "topics": {
+    "have a fight": ["You must get hurt physically and mentally, but don't worry, "],
+    "don't sleep": ["Try to relax before sleep", "Why not try to lay down and count sheep?", "Make a deep breath and clear your mind"],
+    "have a conflict" : ["Think deeply what is the reason behind the conflict", "After calming down, talk to him/her "],
+    "quarrel with": ["It's normal to have a quarrel, ", "Quarrel "],
+    "too many works": ["Relax. Rry to make a detailed plan about all the works you need to do. "],
+    "life is boring": ["Look at the beautiful sun, the big lawn, and the beautiful flowers ", "Talk to your family ", "What about hanging out with your friends? "]
+  },
+
   "emotions": {
     "sadness":
     ["It looks like you are depressed, ",
       "Depression is ",
       "It's OK to feel depressed, ",
-      "It's not your fault ",
+      "It's not your fault, ",
       "I'm sorry that you are sad, "
     ],
 
     "fear":
     ["Fear is ",
       "Are you in a panic now? ",
-      "People usually feel scared "
+      "People usually feel scared ",
+      "No worry, I'm here with you. ",
+      "Make a deep breath "
     ],
 
     "anger":
-    ["Calm down ",
+    ["Calm down first ",
       "People feel angry ",
       "It looks like you are angry, "
+
     ],
 
     "joy":
     ["I also feel happy for you ",
       "What a joy! ",
       "Congratulations! ",
-      "Joyful story! "
+      "Joyful story! ",
+      "What a good story! I really like it. "
     ],
 
     "disgust":
     ["Disgust is a protection strategy, ",
       "How come! ",
-      "How disgusting "
+      "How disgusting ",
+      "I agree. It's so disgusting. "
     ],
 
     "surprise":
     ["What a surprise, ",
-      "Truly unexpected "
+      "Truly unexpected ",
+      "Really? "
     ]
   }
 }

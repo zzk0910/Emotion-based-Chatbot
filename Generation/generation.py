@@ -30,10 +30,10 @@ import numpy as np
 # ------------------- 使用GPT-2模型进行语言生成 ---------------------------
 
 
-def load_generation_model():
+def load_generation_model(model_name="run2"):
     checkpoint_dir = "../Generation/checkpoint"
     sess = gpt2.start_tf_sess()
-    gpt2.load_gpt2(sess, run_name="run2", checkpoint_dir=checkpoint_dir)
+    gpt2.load_gpt2(sess, run_name=model_name, checkpoint_dir=checkpoint_dir)
 
     return sess
 

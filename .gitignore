@@ -11,3 +11,4 @@ ER-Word2Vec-DL
 ERWord2VecDL/serving/__pycache__/
 Generation/GenerationModel
 Generation/models
+EmotionRecognition/serving/__pycache__/
