@@ -26,7 +26,8 @@ pip install -r requirements.txt
 
 - GPT-2 model file structure
 
-    After downloading the fine-tuned GPT-2 model, unzip the file and put the folder "checkpoint" to the path "./Emotion-based-Chatbot/Generation/checkpoint"
+    After downloading the fine-tuned GPT-2 model, unzip the file and put the folder "checkpoint" to the path "./Emotion-based-Chatbot/Generation/checkpoint".
+    
     The program structure should look like this:
              
     <img width="351" alt="checkpoint" src="https://user-images.githubusercontent.com/67768426/141467504-b648ef40-5ef5-4909-b57a-76225d73a564.png">
