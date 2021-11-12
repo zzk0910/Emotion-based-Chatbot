@@ -47,7 +47,8 @@ class ChatbotPage(tk.Frame):
         self.columnconfigure(0, weight=3)
         self.columnconfigure(1, weight=1)
 
-        self.sess2 = load_generation_model(model_name="run3")    # Start gpt-2 model
+        self.model_name = "level400"
+        self.sess2 = load_generation_model(model_name=self.model_name)    # Start gpt-2 model
 
         chat_frame = self.create_chat_frame()
         chat_frame.grid(row=0, column=0, sticky="nsew")
@@ -139,10 +140,10 @@ class ChatbotPage(tk.Frame):
                 if value >= emotion_threshold[label][1]:
                     e_type = emotion_threshold[label][0]
                     prefix = random.choice(e_response[e_type])
-                    answer = gen(self.sess2, prefix, include_prefix=True) + "."
+                    answer = gen(self.sess2, prefix, self.model_name, include_prefix=True) + "."
                     return answer
                 else:
-                    answer = gen(self.sess2, input_sentence, include_prefix=False) + "."
+                    answer = gen(self.sess2, input_sentence,self.model_name, include_prefix=False) + "."
                     return answer
                 # sess2.close()
 
