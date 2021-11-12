@@ -17,8 +17,12 @@ pip install -r requirements.txt
     > 
     > *level400*: Fine-tuned for 400 steps with Q&A sentences from professional mental consultation platform (more general)
 
-    The default model used is "level400". To choose between these two models, change line 50 in file GUI/ChatbotPage.py as follows:
-
+    The default model used is *level400*. It is defined by line 50 in file GUI/ChatbotPage.py.
+    ```python
+    self.model_name = "level400"
+    ```
+    
+    To choose model *level1000*, change this line to
     ```python
     self.model_name = "level1000"
     ```
