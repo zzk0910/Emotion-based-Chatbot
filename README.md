@@ -36,7 +36,7 @@ If you use Pyhton3.6, please go to https://pypi.org/project/dataclasses/ or use 
     > 
     > *level400*: Fine-tuned for 400 steps with Q&A sentences from professional mental consultation platform (more general)
 
-    The default model used is *level400*. It is defined by line 50 in file GUI/ChatbotPage.py.
+    The default model used is *level400*. It is defined by line 46 in file GUI/ChatbotPage.py.
     ```python
     self.model_name = "level400"
     ```
