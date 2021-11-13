@@ -93,28 +93,28 @@ class ChatbotPage(tk.Frame):
             topics = responses["topics"]
         emotion_threshold = {
             "high": {
-                1: ["anger", 0.3],  # anger
-                2: ["disgust", 0.3],  # disgust
-                3: ["fear", 0.3],  # fear
-                4: ["joy", 0.3],  # joy
-                5: ["sadness", 0.3],  # sad
-                6: ["surprise", 0.3]  # surprise
+                0: ["anger", 0.3],  # anger
+                1: ["disgust", 0.3],  # disgust
+                2: ["fear", 0.3],  # fear
+                3: ["joy", 0.3],  # joy
+                4: ["sadness", 0.3],  # sad
+                5: ["surprise", 0.3]  # surprise
             },
             "middle": {
-                1: ["anger", 0.6],  # anger
-                2: ["disgust", 0.6],  # disgust
-                3: ["fear", 0.6],  # fear
-                4: ["joy", 0.6],  # joy
-                5: ["sadness", 0.6],  # sad
-                6: ["surprise", 0.6]  # surprise
+                0: ["anger", 0.6],  # anger
+                1: ["disgust", 0.6],  # disgust
+                2: ["fear", 0.6],  # fear
+                3: ["joy", 0.6],  # joy
+                4: ["sadness", 0.6],  # sad
+                5: ["surprise", 0.6]  # surprise
             },
             "low": {
-                1: ["anger", 0.75],  # anger
-                2: ["disgust", 0.75],  # disgust
-                3: ["fear", 0.75],  # fear
-                4: ["joy", 0.75],  # joy
-                5: ["sadness", 0.75],  # sad
-                6: ["surprise", 0.75]  # surprise
+                0: ["anger", 0.75],  # anger
+                1: ["disgust", 0.75],  # disgust
+                2: ["fear", 0.75],  # fear
+                3: ["joy", 0.75],  # joy
+                4: ["sadness", 0.75],  # sad
+                5: ["surprise", 0.75]  # surprise
             }
         }
 
