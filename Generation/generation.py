@@ -6,27 +6,6 @@ import random
 import gpt_2_simple as gpt2
 import tensorflow as tf
 
-import numpy as np
-#
-# print(platform.platform())
-# # -------------------------- 对传入的标签类进行处理 -----------------------------------------
-# # The format of classification results received: (label, value) e.g. ("sadness", 0.34)
-#
-# label, value = ("sadness", 0.34)
-#
-# CUR_DIR = os.path.abspath(os.path.dirname(__file__))
-# RULE_DIR = os.path.join(CUR_DIR, 'rules.json')
-# with open(RULE_DIR, 'r') as f:
-#     rules = json.load(f)
-#     f.close()
-#
-# if label == "sadness" and value >= 0.30:
-#     prefix = random.choice(rules["sadness"])
-# elif label == "fear" and value >= 0.30:
-#     prefix = random.choice(rules["fear"])
-# else:
-#     prefix = "Good"
-
 # ------------------- 使用GPT-2模型进行语言生成 ---------------------------
 
 

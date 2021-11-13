@@ -1,14 +1,20 @@
 {
   "daily":{
     "hello": ["Hi! Good to see you!","Hi, How are you?"],
+    "hello!": ["Hi! Good to see you!","Hi, How are you?"],
     "hi": ["Hi! How are you today?", "Hello!"],
-    "good": ["great!"],
-    "good morning": ["good morning"],
-    "good afternoon": ["good afternoon"],
+    "hi!": ["Hi! How are you today?", "Hello!"],
+    "good": ["Great!"],
+    "good morning": ["Good morning !"],
+    "good morning!": ["Good morning !"],
+    "good afternoon": ["Good afternoon !"],
+    "good afternoon!": ["Good afternoon !"],
     "good night": ["Good night!"],
+    "good night!": ["Good night!"],
     "see you": ["See you next time!", "Nice talking with you!"],
     "are you a girl": ["I can be a girl if you want.", "It depends on your opinion."],
-    "are you a boy": ["Not really.", "No, but I can be a boy."]
+    "are you a boy": ["Not really.", "No, but I can be a boy."],
+    "bye": ["bye!", "See you next time!"]
   },
 
   "topics": {
@@ -17,7 +23,21 @@
     "have a conflict" : ["Think deeply what is the reason behind the conflict", "After calming down, talk to him/her "],
     "quarrel with": ["It's normal to have a quarrel, ", "Quarrel "],
     "too many works": ["Relax. Rry to make a detailed plan about all the works you need to do. "],
-    "life is boring": ["Look at the beautiful sun, the big lawn, and the beautiful flowers ", "Talk to your family ", "What about hanging out with your friends? "]
+    "life is boring": ["Look at the beautiful sun, the big lawn, and the beautiful flowers ", "Talk to your family ", "What about hanging out with your friends? "],
+    "have a fever": ["Have a good rest ", "Honey, drink more water "],
+    "nice day": ["Glad to hear that! Share more with me. ", "I am also very happy "],
+    "good day": ["Glad to hear that! Share more with me. ", "I am also very happy "],
+    "i feel good": ["Glad to hear that! ", "I am also very happy. "],
+    "i feel better": ["Glad to hear that! ", "I am also very happy. "],
+    "good grade": ["Congratulations! Keep going and you will be successful. ",  "Nice! "],
+    "miss my parents": ["Why not give them a call? "],
+    "miss my friends": ["Why not give them a call? "],
+    "miss my dad": ["Why not give him a call? "],
+    "miss my boyfriend": ["Why not give him a call? "],
+    "miss my mom": ["Why not give her a call? "],
+    "miss my girlfriend": ["Why not give her a call? "],
+    "have no money": ["You are still young, no worry. ", "Don't think too much about money, just devote yourself into what you like, you will get reward then. "],
+    "a trip": ["Enjoy the trip, ", "Relax yourself during the trip. "]
   },
 
   "emotions": {
@@ -34,14 +54,15 @@
       "Are you in a panic now? ",
       "People usually feel scared ",
       "No worry, I'm here with you. ",
-      "Make a deep breath "
+      "Make a deep breath ",
+      "Don't be afraid, I am here with you. "
     ],
 
     "anger":
     ["Calm down first ",
       "People feel angry ",
-      "It looks like you are angry, "
-
+      "It looks like you are angry, ",
+      "Figure out what makes you angry "
     ],
 
     "joy":
@@ -49,7 +70,8 @@
       "What a joy! ",
       "Congratulations! ",
       "Joyful story! ",
-      "What a good story! I really like it. "
+      "What a good story! I really like it. ",
+      "Really interesting! "
     ],
 
     "disgust":
@@ -62,7 +84,7 @@
     "surprise":
     ["What a surprise, ",
       "Truly unexpected ",
-      "Really? "
+      "Really? This is truly a surprise. "
     ]
   }
 }

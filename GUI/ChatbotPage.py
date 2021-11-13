@@ -2,12 +2,8 @@ import datetime
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
 from tkinter import ttk
-from EmotionRecognition.serving.predict import run_api
 from Generation.generation import load_generation_model, gen
 import random
-import PIL
-from PIL import Image
-from PIL import ImageTk
 import json
 import tensorflow as tf
 import requests
@@ -86,7 +82,7 @@ class ChatbotPage(tk.Frame):
         # Welcome notes
         textShow.config(state='normal')
         textShow.insert(tk.END, "Hi ! I'm little genius, nice to meet you! \n" +
-                        "Just share me anything you want to say. I'm excited to liten to your story! \n\n")
+                        "Just share me anything you want to say. I'm excited to listen to your story! \n\n")
         textShow.see(tk.END)
         textShow.config(state='disabled')
 
@@ -96,17 +92,35 @@ class ChatbotPage(tk.Frame):
             emotion_response = responses["emotions"]
             topics = responses["topics"]
         emotion_threshold = {
-            1: ["anger", 0.6],  # anger
-            2: ["disgust", 0.6],  # disgust
-            3: ["fear", 0.6],  # fear
-            4: ["joy", 0.6],  # joy
-            5: ["sadness", 0.6],  # sad
-            6: ["surprise", 0.6]  # surprise
+            "high": {
+                1: ["anger", 0.3],  # anger
+                2: ["disgust", 0.3],  # disgust
+                3: ["fear", 0.3],  # fear
+                4: ["joy", 0.3],  # joy
+                5: ["sadness", 0.3],  # sad
+                6: ["surprise", 0.3]  # surprise
+            },
+            "middle": {
+                1: ["anger", 0.6],  # anger
+                2: ["disgust", 0.6],  # disgust
+                3: ["fear", 0.6],  # fear
+                4: ["joy", 0.6],  # joy
+                5: ["sadness", 0.6],  # sad
+                6: ["surprise", 0.6]  # surprise
+            },
+            "low": {
+                1: ["anger", 0.75],  # anger
+                2: ["disgust", 0.75],  # disgust
+                3: ["fear", 0.75],  # fear
+                4: ["joy", 0.75],  # joy
+                5: ["sadness", 0.75],  # sad
+                6: ["surprise", 0.75]  # surprise
+            }
         }
 
         def response_strategy(f_reponse, e_response, input_sentence, emotion_threshold):
-            if input_sentence in f_reponse:
-                answer = random.choice(f_reponse[input_sentence])
+            if str.lower(input_sentence) in f_reponse:
+                answer = random.choice(f_reponse[str.lower(input_sentence)])
                 return answer
             else:
                 data = {'text': input_sentence}  # 请求的参数，或者说是要传输的数据
@@ -132,22 +146,26 @@ class ChatbotPage(tk.Frame):
                 for k in topics.keys():
                     if k in input_sentence:
                         prefix = random.choice(topics[k])
-                        answer = gen(self.sess2, prefix, include_prefix=True) + "."
+                        answer = gen(self.sess2, prefix, self.model_name, include_prefix=True) + "."
                         return answer
 
-                # tf.compat.v1.reset_default_graph()
-                # sess2 = load_generation_model()
-                if value >= emotion_threshold[label][1]:
-                    e_type = emotion_threshold[label][0]
+                # Use questionnaire score to adjust response strategy
+                que_score = 90
+                if que_score >= 87:
+                    threshold = emotion_threshold["high"]
+                elif 34 < que_score < 87:
+                    threshold = emotion_threshold["middle"]
+                else:
+                    threshold = emotion_threshold["low"]
+
+                if value >= threshold[label][1]:
+                    e_type = threshold[label][0]
                     prefix = random.choice(e_response[e_type])
                     answer = gen(self.sess2, prefix, self.model_name, include_prefix=True) + "."
                     return answer
                 else:
                     answer = gen(self.sess2, input_sentence,self.model_name, include_prefix=False) + "."
                     return answer
-                # sess2.close()
-
-
 
         def send_message():
             q = textInput.get()
@@ -155,12 +173,6 @@ class ChatbotPage(tk.Frame):
             if q.replace(" ", "") == "":
                 # messagebox.showwarning('Warning', "Empty Message！")
                 return
-
-            # 存储需要的东西到数据库 sentence就是q
-            """
-            
-            
-            """
 
             textShow.config(state='normal')
             textShow.insert(tk.END, "User：\n", "user")
