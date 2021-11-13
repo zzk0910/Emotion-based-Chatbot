@@ -1,6 +1,18 @@
 # Emotion-based-Chatbot
 NUS IS5452 Project
 
+**Folders:**
+
+- *EmotionRecognition*: Code of emotion recognition model
+- *Generation*: Code of GPT-2 text generation model
+- *GUI*: Code to create graphical user interface 
+- *Serving*: Code to start the emotion recognition model service (avoid tensorflow conflicts when the GPT-2 model)
+
+**Demo:**
+
+- *LittleGenius_Demo.mp4*: Shows how this application works
+
+
 ## Before starting the program
 Clone this repo to a desired local location.
 
