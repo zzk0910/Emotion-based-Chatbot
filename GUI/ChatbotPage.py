@@ -151,6 +151,21 @@ class ChatbotPage(tk.Frame):
 
                 # Use questionnaire score to adjust response strategy
                 que_score = 90
+                cursor = self.root.database.cursor()
+                sql = "SELECT `GAD-7_Score`, `PHQ-9_Score`, `PSS`, `ISI` FROM questionnaire " \
+                      "where user_name = '%s' order by time desc limit 1" \
+                      % self.root.username
+
+                try:
+                    cursor.execute(sql)
+                    inquire_results = cursor.fetchall()
+                    if len(inquire_results) > 0:
+                        inquire_results = inquire_results[0]
+                        que_score = sum(inquire_results)
+                except:
+                    # inquire_results = 'Error'
+                    print("Error: unable to fetch data")
+
                 if que_score >= 87:
                     threshold = emotion_threshold["high"]
                 elif 34 < que_score < 87:
