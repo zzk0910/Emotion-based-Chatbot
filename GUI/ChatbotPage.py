@@ -150,7 +150,7 @@ class ChatbotPage(tk.Frame):
                         return answer
 
                 # Use questionnaire score to adjust response strategy
-                que_score = 90
+                que_score = 50
                 cursor = self.root.database.cursor()
                 sql = "SELECT `GAD-7_Score`, `PHQ-9_Score`, `PSS`, `ISI` FROM questionnaire " \
                       "where user_name = '%s' order by time desc limit 1" \
