@@ -21,12 +21,6 @@ Clone this repo to a desired local location.
 pip install -r requirements.txt
 ```
 
-**Attention:**
-
-The package *dataclasses* is necessary for this program, and *dataclasses* is inclueded in Python3.7 and later versions. 
-
-If you use Pyhton3.6, please go to https://pypi.org/project/dataclasses/ or use `pip install dataclasses==0.8` to manually download the package. Pyhton version earlier than 3.6 is not recommended for this program.
-
 
 ### Prepare GPT-2 Model
 - Download the fine-tuned GPT-2 model from [google drive sharing link](https://drive.google.com/file/d/11h7j5w4OKM_27ZIG744KqEwY95HXGqVQ/view?usp=sharing).
